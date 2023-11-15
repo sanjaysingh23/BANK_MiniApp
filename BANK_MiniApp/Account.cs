@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BANK_MiniApp
 {
-
     abstract class Account
     {
         private int id;
@@ -14,6 +13,20 @@ namespace BANK_MiniApp
         private String name;
         private Double balance;
         private String accountType;
+        private static int maxNoOfObj = 0;
+        public Account(string name, double balance, string accountType)
+        {
+            this.Name = name;
+            this.Balance = balance;
+            this.AccountType = accountType;
+            maxNoOfObj++;
+            if(maxNoOfObj > 5)
+            {
+                throw new Exception("Only five members are allowed");
+            }
+            
+        }
+        
         public abstract double withdraw(double amt);
         public double deposit(double amt)
         {
@@ -23,7 +36,6 @@ namespace BANK_MiniApp
         public Account() { }
         public int Id
         {
-            
             get 
             {
                 setId++;
@@ -39,19 +51,14 @@ namespace BANK_MiniApp
             }
             set
             {
-                
                     if (value.Length > 2 || value.Length < 15)
                     {
                     name = value;
-                    
                     }
-                else
-                {
-                    throw new Exception("value must  meet criteria");
-                }
-                
-               
-                
+                    else
+                    {
+                       throw new Exception("value must  meet criteria");
+                    }
             }
         }
         public double Balance
@@ -70,16 +77,6 @@ namespace BANK_MiniApp
             get { return accountType; }
             set { accountType = value; }
         }
-        public Account(string name, double balance, string accountType)
-        {
-            this.Name = name; 
-            this.Balance = balance;
-            this.AccountType = accountType;
-        }
-        
-
-        
-
     }
     
 }

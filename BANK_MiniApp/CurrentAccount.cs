@@ -24,18 +24,7 @@ namespace BANK_MiniApp
             return (Balance - amt);
         }
         
-        public static CurrentAccount GetObj()
-        {
-            if (numOfObj < 5)
-            {
-                numOfObj++;
-                return new CurrentAccount();
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("Only five Members are allowed");
-            }
-        }
+       
     }
 
 }

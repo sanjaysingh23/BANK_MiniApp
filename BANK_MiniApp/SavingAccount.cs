@@ -50,30 +50,23 @@ namespace BANK_MiniApp
            
             catch (Exception e)
             { 
-                throw new Exception("Insufficient balance");
+                Console.WriteLine("Insufficient balance");
             }
             finally
             {
-                StreamWriter sw = new StreamWriter("D:\\C-DAC\\DotNet\\ADO_DotNet\\Day3\\Bank file\\CustumerDetail.txt");
-                sw.WriteLine("{0} Withdraw amount {1}", Name, amt);
-                sw.Flush();
-                sw.Close();
+                try
+                {
+                    StreamWriter sw = new StreamWriter("D:\\C-DAC\\DotNet\\ADO.Net_Asp.net\\Day3\\Bank file\\CustumerDetail.txt");
+                    sw.WriteLine("{0} Withdraw amount {1}", Name, amt);
+                    sw.Flush();
+                    sw.Close();
+                }
+                catch (FileNotFoundException fe)
+                {
+                    Console.WriteLine($"Exception: {fe.Message}");
+                }
             }
-
             return Balance;
-        }
-        
-        public static SavingAccount GetObj()
-        {
-            if(numOfObj < 5) 
-            {
-                numOfObj++;
-                return new SavingAccount();
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("Only five Members are allowed");
-            }
         }
     }
 }
